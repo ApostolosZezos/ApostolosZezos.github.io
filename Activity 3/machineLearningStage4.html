@@ -3,7 +3,7 @@
 <head>
     <script type="text/javascript" src="https://sdk.clarifai.com/js/clarifai-latest.js"></script>
   
-    <title>Machine Learning Stage 3</title>
+    <title>Machine Learning Stage 4</title>
 
 <style>
     .wrapper {
@@ -82,6 +82,7 @@
             </ul>
     </div>
 </div>
+
 <script>
     const app = new Clarifai.App({apiKey: '92c6adff214f40538443d6768a73a176'});
     app.models.predict("bd367be194cf45149e75f01d59f77ba7", "https://samples.clarifai.com/food.jpg").then( 
@@ -93,5 +94,9 @@
     } 
 );
 </script>
+
+
+<script type="text/javascript" src="scriptstage4.js"></script>
+
 </body>
 </html>
