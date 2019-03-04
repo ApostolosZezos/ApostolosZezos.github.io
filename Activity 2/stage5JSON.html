@@ -1,0 +1,99 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js">	
+	</script>
+
+	<title>Stage 4 JSON Activity</title>
+
+	    <style>
+       
+
+       div {
+            height: 50px;
+            width: 0px;
+            border-radius: 10px;
+            background-color:red;
+        }
+        h1 {
+            margin: auto;
+            line-height: 50px;
+            display: table;
+        }
+       
+        p {
+        
+            margin-left: 10px;
+            font-size: 20px;
+            vertical-align: middle;
+            line-height: 50px;
+        }
+
+    </style>
+
+</head>
+<body>
+	
+	<h1>HIV Infection Rates Compared Proportionally By Country</h1>
+ 	
+    <div id = "content">
+    </div>
+
+	<script>
+
+	var myData = "";
+	var staticUrl = 'https://raw.githubusercontent.com/ApostolosZezos/ApostolosZezos.github.io/master/Activity%202/DATA%20file/data.json'; 
+	$.getJSON(staticUrl, function(data) {
+	      
+	    iw = window.innerWidth - 100; //access the width of the inner window
+ 
+        //step 1 find largest number
+        vstr = data.fact[1].Value;
+        largest = parseInt(vstr.substring(0,vstr.indexOf("[")).replace(" ",""));
+        for (i = 2; i < 194; i++) {
+            vstr = data.fact[i].Value;
+            cval = parseInt(vstr.substring(0,vstr.indexOf("[")).replace(" ",""));
+            if (isNaN(cval) === false) {
+                largest = Math.max(largest,cval)
+            }
+                
+            
+        
+        }
+        
+        console.log(largest)
+        for (i = 2; i < 194; i++) {
+            col = ["red","green","blue"];
+            
+            vstr = data.fact[i].Value;
+            cval = parseInt(vstr.substring(0,vstr.indexOf("[")).replace(" ",""));
+            
+            if (isNaN(cval) === false) {
+          
+                var div = document.createElement("div");
+                div.setAttribute("id","div"+i);
+            
+                val1 = parseInt(cval/largest*iw);
+                document.getElementById("content").appendChild(div);
+              
+            
+                document.getElementById("div"+i).style.width = val1+"px";
+                document.getElementById("div"+i).style.backgroundColor = col[i%3];
+                            
+                var p = document.createElement("p");
+                p.setAttribute("id","p"+i);
+                tcountry = String(data.fact[i].dims.COUNTRY);
+                console.log(tcountry);
+                document.getElementById("div"+i).appendChild(p);
+                document.getElementById("p"+i).innerHTML = "<pre>"+tcountry+" - "+cval+"</pre>";    
+                
+            }
+       
+        }
+
+	    });
+
+	</script>
+
+</body>
+</html>
