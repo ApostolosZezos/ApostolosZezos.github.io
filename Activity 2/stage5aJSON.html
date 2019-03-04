@@ -1,0 +1,54 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+    <title>Stage 4b JSON Activity</title>
+
+    <style>
+		div {
+		    height: 50px; 
+		    width: 0px;
+		    border-radius: 10px;
+		    background-color:red;
+		}
+		h1 {
+		    margin: auto;
+		    line-height: 50px;
+		    display: table;
+		}
+		p {
+		    margin-left: 10px;
+		    font-size: 20px;
+		    vertical-align: middle;
+		    line-height: 50px;
+		}
+    </style>
+</head>
+<body>
+
+<h1>HIV Infection Rates Compared Proportionally By Country</h1>
+<div id = content>
+</div>
+
+
+<script>
+    var myData = "";
+    var staticUrl = 'https://raw.githubusercontent.com/PMiskew/pmiskew.github.io/master/Activity%202/data/HIVinfection.json'; 
+    $.getJSON(staticUrl, function(data) {
+        iw = window.innerWidth - 100;
+        //console.log(iw);
+        country1Data = data.fact[1].Value;
+        //console.log(country1Data);
+        loc = countryData.indexOf("[");
+        //console.log(loc1);
+        val = countryData.substring(0,loc);
+        //console.log(val1);
+        val = val.replace(/ /g,"");
+        //console.log(val1);
+        val = parseInt(val);
+        console.log(val);
+        
+    });
+</script>
+</body>
+</html>
